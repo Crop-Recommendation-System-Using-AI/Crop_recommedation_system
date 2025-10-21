@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Agricultural Crop Recommendation System{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="display-4 fw-bold text-white mb-4">Smart Crop Recommendations for Better Harvests</h1>
+                    <p class="lead text-white mb-4">Our AI-powered system analyzes soil conditions, weather patterns, and historical data to recommend the best crops for your farm.</p>
+                    <div class="d-flex gap-3">
+                        <a href="/recommendation" class="btn btn-light btn-lg">Get Recommendation</a>
+                        <a href="/about" class="btn btn-outline-light btn-lg">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-image">
+                    <img src="{{ url_for('static', filename='images/farming.jpg') }}" alt="Farming" class="img-fluid rounded-3 shadow">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5 fw-bold">Why Choose AgriRecommend?</h2>
+                <p class="lead">Our system provides numerous benefits to help farmers optimize their crop selection</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Analysis</h3>
+                    <p>Our advanced algorithms analyze multiple factors including soil composition, climate data, and historical yield patterns.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Increased Yield</h3>
+                    <p>Make data-driven decisions to select crops that are most likely to thrive in your specific conditions.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainable Farming</h3>
+                    <p>Reduce resource waste and environmental impact by growing crops that are naturally suited to your land.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5 fw-bold">How It Works</h2>
+                <p class="lead">Get personalized crop recommendations in just a few simple steps</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Enter Your Data</h4>
+                    <p>Input information about your soil conditions, climate, and other relevant factors.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>AI Analysis</h4>
+                    <p>Our system processes your data using advanced machine learning algorithms.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Get Recommendations</h4>
+                    <p>Receive personalized crop recommendations tailored to your specific conditions.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Optimize Your Farm</h4>
+                    <p>Implement the recommendations and maximize your yield and sustainability.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5 fw-bold">What Farmers Say</h2>
+                <p class="lead">Real experiences from farmers who have used our system</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-content">
+                        <p>"AgriRecommend helped me switch to crops that were better suited for my soil. My yield increased by 30% in just one season!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/farmer1/50/50.jpg" alt="Farmer" class="rounded-circle">
+                        <div class="author-info">
+                            <h5>Raj Patel</h5>
+                            <p>Wheat Farmer, Gujarat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-content">
+                        <p>"The AI recommendations were spot on. I'm now growing crops that require less water, which has saved me a lot in irrigation costs."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/farmer2/50/50.jpg" alt="Farmer" class="rounded-circle">
+                        <div class="author-info">
+                            <h5>Maria Garcia</h5>
+                            <p>Corn Farmer, Mexico</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card h-100">
+                    <div class="testimonial-content">
+                        <p>"I was skeptical at first, but the system's predictions were accurate. It's like having an agricultural expert available 24/7."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://picsum.photos/seed/farmer3/50/50.jpg" alt="Farmer" class="rounded-circle">
+                        <div class="author-info">
+                            <h5>John Smith</h5>
+                            <p>Soybean Farmer, Iowa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold text-white mb-4">Ready to Optimize Your Farm?</h2>
+                <p class="lead text-white mb-4">Join thousands of farmers who have increased their yield with our recommendations</p>
+                <a href="/signup" class="btn btn-light btn-lg">Sign Up Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Add animation on scroll
+    $(document).ready(function() {
+        $(window).scroll(function() {
+            $('.feature-card, .step, .testimonial-card').each(function() {
+                const position = $(this).offset().top;
+                const scroll = $(window).scrollTop();
+                const windowHeight = $(window).height();
+                
+                if (scroll > position - windowHeight + 100) {
+                    $(this).addClass('animate-fade-in');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

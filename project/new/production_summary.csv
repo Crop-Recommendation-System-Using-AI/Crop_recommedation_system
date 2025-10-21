@@ -1,0 +1,11 @@
+State_Name,District_Name,Crop,Area,Production,Yield_per_Area
+State 1,District 1,rice,7226,88710,4.811881514751025
+State 2,District 2,wheat,580,35651,4.5950226657031745
+State 3,District 3,maize,5363,67333,3.625097313221236
+State 4,District 4,cotton,4194,74745,5.866463277749251
+State 5,District 5,sugarcane,6267,50306,6.2437269792361025
+State 6,District 6,potato,2893,22346,6.532895409013626
+State 7,District 7,onion,2992,29024,0.7036810790602932
+State 8,District 8,tomato,1298,95950,6.310341757120489
+State 9,District 9,chili,8111,41818,9.532371787812329
+State 10,District 10,banana,2472,6947,5.409862355280836

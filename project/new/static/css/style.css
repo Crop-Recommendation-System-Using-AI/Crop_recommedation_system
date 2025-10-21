@@ -1,0 +1,362 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navigation */
+.navbar {
+    background-color: #2e7d32;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #f8f9fa !important;
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(46, 125, 50, 0.8), rgba(46, 125, 50, 0.8)), url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding-top: 80px;
+}
+
+.hero-content {
+    animation: fadeInLeft 1s ease;
+}
+
+.hero-image {
+    animation: fadeInRight 1s ease;
+}
+
+.hero-image img {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Features Section */
+.features {
+    padding: 80px 0;
+}
+
+.feature-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.feature-card.animate-fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #2e7d32;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2rem;
+}
+
+/* How It Works Section */
+.how-it-works {
+    background-color: #f8f9fa;
+}
+
+.step {
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.step.animate-fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background-color: #2e7d32;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Testimonials Section */
+.testimonial-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.testimonial-card.animate-fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonial-content {
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+}
+
+.author-info {
+    margin-left: 15px;
+}
+
+.author-info h5 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.author-info p {
+    margin: 0;
+    color: #6c757d;
+}
+
+/* CTA Section */
+.cta {
+    background-color: #2e7d32;
+    color: white;
+    text-align: center;
+}
+
+/* Recommendation Form */
+.recommendation {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #455a64;
+}
+
+.btn-primary {
+    background-color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+.btn-primary:hover {
+    background-color: #1b5e20;
+    border-color: #1b5e20;
+}
+
+.info-text {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+/* Signup Form */
+.signup {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+/* Result Page */
+.result-card {
+    border-left: 5px solid #2e7d32;
+    margin-bottom: 20px;
+}
+
+.crop-name {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.ai-recommendations {
+    background-color: #f1f8e9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    white-space: pre-wrap;
+    font-family: Arial, sans-serif;
+}
+
+.production-chart {
+    margin-top: 30px;
+}
+
+.recommendation-section {
+    margin-bottom: 20px;
+}
+
+.recommendation-title {
+    font-weight: bold;
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 60px 0 20px;
+}
+
+.footer h5 {
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
+
+.footer ul {
+    padding-left: 0;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #2e7d32;
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 70vh;
+        text-align: center;
+    }
+    
+    .hero-image {
+        margin-top: 30px;
+    }
+    
+    .feature-card, .step, .testimonial-card {
+        margin-bottom: 30px;
+    }
+}
+/* Handle missing logo */
+.navbar-brand img {
+    display: none;
+}
+
+/* Show text logo when image is missing */
+.navbar-brand .ms-2 {
+    display: inline-block;
+}
+.hero {
+    background: linear-gradient(rgba(46, 125, 50, 0.8), rgba(46, 125, 50, 0.8)), url('https://picsum.photos/seed/farm/1920/1080.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding-top: 80px;
+}
+/* Result Page Styles */
+.result {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+.result-card {
+    border-left: 5px solid #2e7d32;
+}
+
+.crop-name {
+    color: #2e7d32;
+    font-weight: bold;
+}
+
+.ai-recommendations {
+    background-color: #f1f8e9;
+    padding: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    font-family: Arial, sans-serif;
+    max-height: 400px;
+    overflow-y: auto;
+}
