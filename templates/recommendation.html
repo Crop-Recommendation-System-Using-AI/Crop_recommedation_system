@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Get Recommendation - Agricultural Crop Recommendation System{% endblock %}
+
+{% block content %}
+<section class="recommendation py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <h2 class="card-title text-center mb-4">Get Crop Recommendation</h2>
+                        <p class="text-center text-muted mb-4">Enter your soil and weather conditions to get personalized crop recommendations</p>
+                        
+                        <form action="/predict" method="post">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="nitrogen" class="form-label">Nitrogen (N)</label>
+                                    <input type="number" class="form-control" id="nitrogen" name="nitrogen" required step="0.01">
+                                    <div class="info-text">Enter nitrogen content in soil (kg/ha)</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phosphorous" class="form-label">Phosphorous (P)</label>
+                                    <input type="number" class="form-control" id="phosphorous" name="phosphorous" required step="0.01">
+                                    <div class="info-text">Enter phosphorous content in soil (kg/ha)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="potassium" class="form-label">Potassium (K)</label>
+                                    <input type="number" class="form-control" id="potassium" name="potassium" required step="0.01">
+                                    <div class="info-text">Enter potassium content in soil (kg/ha)</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="temperature" class="form-label">Temperature (°C)</label>
+                                    <input type="number" class="form-control" id="temperature" name="temperature" required step="0.01">
+                                    <div class="info-text">Enter average temperature (°C)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="humidity" class="form-label">Humidity (%)</label>
+                                    <input type="number" class="form-control" id="humidity" name="humidity" required step="0.01" min="0" max="100">
+                                    <div class="info-text">Enter relative humidity (%)</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="ph" class="form-label">pH Level</label>
+                                    <input type="number" class="form-control" id="ph" name="ph" required step="0.01" min="0" max="14">
+                                    <div class="info-text">Enter soil pH level (0-14)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label for="rainfall" class="form-label">Rainfall (mm)</label>
+                                    <input type="number" class="form-control" id="rainfall" name="rainfall" required step="0.01">
+                                    <div class="info-text">Enter annual rainfall (mm)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-lg">Get Recommendation</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
