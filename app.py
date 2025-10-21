@@ -233,6 +233,10 @@ def recommendation():
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
+# Add this route to your Flask app
+@app.route('/visualization')
+def visualization():
+    return render_template('visualization.html')
 
 @app.route('/register', methods=['POST'])
 def register():

@@ -1,0 +1,443 @@
+{% extends "base.html" %}
+
+{% block title %}Crop Yield Visualization - Agricultural Crop Recommendation System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .chart-container {
+        position: relative;
+        height: 400px;
+        margin-bottom: 30px;
+    }
+    .filter-section {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+    .visualization-card {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    .chart-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #2c3e50;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="visualization py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mb-4">Crop Yield Visualization</h1>
+                <p class="text-center text-muted mb-5">Explore agricultural data and trends across different regions and crops</p>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="cropFilter" class="form-label">Select Crop</label>
+                    <select class="form-select" id="cropFilter">
+                        <option value="all">All Crops</option>
+                        <option value="rice">Rice</option>
+                        <option value="wheat">Wheat</option>
+                        <option value="maize">Maize</option>
+                        <option value="cotton">Cotton</option>
+                        <option value="sugarcane">Sugarcane</option>
+                        <option value="potato">Potato</option>
+                        <option value="onion">Onion</option>
+                        <option value="tomato">Tomato</option>
+                        <option value="chili">Chili</option>
+                        <option value="banana">Banana</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="stateFilter" class="form-label">Select State</label>
+                    <select class="form-select" id="stateFilter">
+                        <option value="all">All States</option>
+                        <option value="California">California</option>
+                        <option value="Texas">Texas</option>
+                        <option value="Iowa">Iowa</option>
+                        <option value="Nebraska">Nebraska</option>
+                        <option value="Kansas">Kansas</option>
+                        <option value="Minnesota">Minnesota</option>
+                        <option value="Illinois">Illinois</option>
+                        <option value="Indiana">Indiana</option>
+                        <option value="Ohio">Ohio</option>
+                        <option value="Missouri">Missouri</option>
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button class="btn btn-primary w-100" id="applyFilters">Apply Filters</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="visualization-card">
+                    <h3 class="chart-title">Crop Yield by State</h3>
+                    <div class="chart-container">
+                        <canvas id="yieldByStateChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="visualization-card">
+                    <h3 class="chart-title">Production by Crop Type</h3>
+                    <div class="chart-container">
+                        <canvas id="productionByCropChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="visualization-card">
+                    <h3 class="chart-title">Cultivation Area Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="areaDistributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="visualization-card">
+                    <h3 class="chart-title">Yield Efficiency Comparison</h3>
+                    <div class="chart-container">
+                        <canvas id="efficiencyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="visualization-card">
+                    <h3 class="chart-title">Production Trends Over Time</h3>
+                    <div class="chart-container">
+                        <canvas id="trendsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize charts
+        initYieldByStateChart();
+        initProductionByCropChart();
+        initAreaDistributionChart();
+        initEfficiencyChart();
+        initTrendsChart();
+        
+        // Add event listener for filter button
+        document.getElementById('applyFilters').addEventListener('click', function() {
+            updateCharts();
+        });
+    });
+    
+    function initYieldByStateChart() {
+        const ctx = document.getElementById('yieldByStateChart').getContext('2d');
+        window.yieldByStateChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['California', 'Texas', 'Iowa', 'Nebraska', 'Kansas', 'Minnesota', 'Illinois', 'Indiana', 'Ohio', 'Missouri'],
+                datasets: [{
+                    label: 'Average Yield (tons/hectare)',
+                    data: [4.2, 3.8, 5.1, 4.7, 4.3, 4.9, 4.5, 4.1, 3.9, 4.6],
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Yield (tons/hectare)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'State'
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    function initProductionByCropChart() {
+        const ctx = document.getElementById('productionByCropChart').getContext('2d');
+        window.productionByCropChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Rice', 'Wheat', 'Maize', 'Cotton', 'Sugarcane', 'Potato', 'Onion', 'Tomato', 'Chili', 'Banana'],
+                datasets: [{
+                    data: [15, 18, 12, 8, 10, 9, 7, 6, 5, 10],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)',
+                        'rgba(199, 199, 199, 0.7)',
+                        'rgba(83, 102, 255, 0.7)',
+                        'rgba(255, 99, 255, 0.7)',
+                        'rgba(99, 255, 132, 0.7)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        });
+    }
+    
+    function initAreaDistributionChart() {
+        const ctx = document.getElementById('areaDistributionChart').getContext('2d');
+        window.areaDistributionChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Rice', 'Wheat', 'Maize', 'Cotton', 'Sugarcane', 'Potato', 'Onion', 'Tomato', 'Chili', 'Banana'],
+                datasets: [{
+                    data: [20, 22, 15, 10, 12, 8, 5, 3, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)',
+                        'rgba(199, 199, 199, 0.7)',
+                        'rgba(83, 102, 255, 0.7)',
+                        'rgba(255, 99, 255, 0.7)',
+                        'rgba(99, 255, 132, 0.7)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        });
+    }
+    
+    function initEfficiencyChart() {
+        const ctx = document.getElementById('efficiencyChart').getContext('2d');
+        window.efficiencyChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Yield', 'Water Efficiency', 'Nutrient Efficiency', 'Disease Resistance', 'Market Value', 'Growth Rate'],
+                datasets: [
+                    {
+                        label: 'Rice',
+                        data: [85, 70, 75, 60, 80, 75],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                    },
+                    {
+                        label: 'Wheat',
+                        data: [75, 80, 85, 70, 75, 80],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                    },
+                    {
+                        label: 'Maize',
+                        data: [90, 65, 70, 65, 70, 85],
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        pointBackgroundColor: 'rgba(255, 206, 86, 1)',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+    }
+    
+    function initTrendsChart() {
+        const ctx = document.getElementById('trendsChart').getContext('2d');
+        window.trendsChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022', '2023'],
+                datasets: [
+                    {
+                        label: 'Rice',
+                        data: [120, 135, 140, 155, 160, 175],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        tension: 0.4,
+                        fill: false
+                    },
+                    {
+                        label: 'Wheat',
+                        data: [110, 125, 130, 140, 145, 160],
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        tension: 0.4,
+                        fill: false
+                    },
+                    {
+                        label: 'Maize',
+                        data: [100, 110, 120, 130, 140, 150],
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        tension: 0.4,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Production (thousand tons)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Year'
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    function updateCharts() {
+        const cropFilter = document.getElementById('cropFilter').value;
+        const stateFilter = document.getElementById('stateFilter').value;
+        
+        // In a real application, you would fetch filtered data from the server
+        // For this example, we'll just simulate it with random data
+        
+        // Update yield by state chart
+        if (stateFilter !== 'all') {
+            // If a specific state is selected, show crops instead
+            window.yieldByStateChart.data.labels = ['Rice', 'Wheat', 'Maize', 'Cotton', 'Sugarcane'];
+            window.yieldByStateChart.data.datasets[0].label = `Yield in ${stateFilter} (tons/hectare)`;
+            window.yieldByStateChart.data.datasets[0].data = [
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2
+            ];
+        } else {
+            // Show all states
+            window.yieldByStateChart.data.labels = ['California', 'Texas', 'Iowa', 'Nebraska', 'Kansas', 'Minnesota', 'Illinois', 'Indiana', 'Ohio', 'Missouri'];
+            window.yieldByStateChart.data.datasets[0].label = 'Average Yield (tons/hectare)';
+            window.yieldByStateChart.data.datasets[0].data = [
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2,
+                Math.random() * 5 + 2
+            ];
+        }
+        window.yieldByStateChart.update();
+        
+        // Update other charts with random data for demonstration
+        window.productionByCropChart.data.datasets[0].data = [
+            Math.random() * 20 + 5,
+            Math.random() * 20 + 5,
+            Math.random() * 20 + 5,
+            Math.random() * 20 + 5,
+            Math.random() * 20 + 5,
+            Math.random() * 20 + 5,
+            Math.random() * 20 + 5,
+            Math.random() * 20 + 5,
+            Math.random() * 20 + 5,
+            Math.random() * 20 + 5
+        ];
+        window.productionByCropChart.update();
+        
+        window.areaDistributionChart.data.datasets[0].data = [
+            Math.random() * 25 + 5,
+            Math.random() * 25 + 5,
+            Math.random() * 25 + 5,
+            Math.random() * 25 + 5,
+            Math.random() * 25 + 5,
+            Math.random() * 25 + 5,
+            Math.random() * 25 + 5,
+            Math.random() * 25 + 5,
+            Math.random() * 25 + 5,
+            Math.random() * 25 + 5
+        ];
+        window.areaDistributionChart.update();
+        
+        // Show a notification
+        const notification = document.createElement('div');
+        notification.className = 'alert alert-success alert-dismissible fade show position-fixed';
+        notification.style.top = '80px';
+        notification.style.right = '20px';
+        notification.style.zIndex = '1050';
+        notification.innerHTML = `
+            <strong>Filters Applied!</strong> Charts have been updated with filtered data.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+        document.body.appendChild(notification);
+        
+        // Auto-remove notification after 3 seconds
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+</script>
+{% endblock %}
